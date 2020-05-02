@@ -22,7 +22,7 @@ class App extends React.Component {
             ? null
             : <div>
                 <h1>Would you rather</h1>
-                {/* <QuestionListContainer /> */}
+                <QuestionListContainer />
                 <NewQuestion />
               </div>
           }
