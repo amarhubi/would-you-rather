@@ -1,64 +1,21 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
+import Question from './Question'
 
 
 class QuestionList extends Component {
-    state = {
-        answered: [],
-        unanswered: [],
-    }
 
-    componentDidMount(){
-        const { questions, authedUser } = this.props
-        let answered = [], unanswered = []
-        for(const q in questions){
-            if(questions[q].optionOne.votes.includes(authedUser) || questions[q].optionTwo.votes.includes(authedUser)){
-                answered.push(questions[q])
-            }
-            else {
-                unanswered.push(questions[q])
-            }
-        }
-        
-        this.setState({
-            answered,
-            unanswered,
-        })
-    }
     render(){
-        const { answered, unanswered } = this.state
+        const { questions } = this.props
         return (
-            <div>
-                List of questions
-                <div>Answered</div>
                 <ul>
-                    {answered.map(q => {
-                        console.log(q)
-                        return (<div>
-                            <div>{q.optionOne.text}</div>
-                            <div>{q.optionTwo.text}</div>
-                        </div>)
+                    {questions.map(id => {
+                        console.log(id)
+                        return <Question key={id} id={id} />
                     })}
-                </ul>
-                <div>Unanswered</div>
-                <ul>
-                    {unanswered.map(q => {
-                            console.log(q)
-                            return (<div>
-                                <div>{q.optionOne.text}</div>
-                                <div>{q.optionTwo.text}</div>
-                            </div>)
-                        })}
-                </ul>
-            </div>
+                </ul>        
         )
     }
 }
 
-function mapStateToProps({ questions, authedUser }){
-    return{
-        questions,
-        authedUser
-    }
-}
-export default connect(mapStateToProps)(QuestionList)
+export default QuestionList

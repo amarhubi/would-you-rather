@@ -2,16 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
-import QuestionList from './QuestionList'
+import QuestionListContainer from './QuestionListContainer'
+import NewQuestion from './NewQuestion'
 
 
 
 class App extends React.Component {
-  state = {
-    answered: [],
-    unanswered: [],
-  }
-
+  
   componentDidMount(){
       this.props.dispatch(handleInitialData())
     }
@@ -24,8 +21,9 @@ class App extends React.Component {
           {this.props.loading 
             ? null
             : <div>
-                <span>Would you rather</span>
-                <QuestionList />
+                <h1>Would you rather</h1>
+                {/* <QuestionListContainer /> */}
+                <NewQuestion />
               </div>
           }
           
