@@ -4,7 +4,7 @@ import { receiveQuestions, answerQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-const authedUser = "tylermcginnis"
+// const authedUser = "tylermcginnis"
 
 export function handleInitialData(){
     return (dispatch) => {
@@ -13,7 +13,7 @@ export function handleInitialData(){
             .then(([questions, users]) => {
                 dispatch(receiveQuestions(questions))
                 dispatch(receiveUsers(users))
-                dispatch(setAuthedUser(authedUser))
+                // dispatch(setAuthedUser(authedUser))
                 dispatch(hideLoading())
             })
             .catch(
