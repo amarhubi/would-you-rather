@@ -4,37 +4,47 @@ import { connect } from 'react-redux'
 
 class NewQuestion extends Component {
     state = {
-        text: ''
+        optionOne: '',
+        optionTwo: ''
     }
 
     handleChange = (e) => {
         e.preventDefault()
-        this.setState({text: e.target.value})
+        this.setState({[e.target.id]: e.target.value})
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(`Submitted question text: ${e.target.value}`)
+        const { optionOne, optionTwo } = this.state
         const { dispatch } = this.props
-
-        dispatch(handleAddQuestion('option 1', 'option 2'))
+        this.setState({optionOne: '', optionTwo: ''})
+        dispatch(handleAddQuestion(optionOne, optionTwo))
     }
 
     render(){
-        const { text } = this.state,
+        const { optionOne, optionTwo } = this.state,
             maxLength = 100
-        let questionLeft = maxLength - text.length
+        // let questionLeft = maxLength - text.length
         return (<div>
             <h3>New Question</h3>
             <form className='new-question' onSubmit={(e) => this.handleSubmit(e)}>
                 <textarea 
-                    value={text}
+                    value={optionOne}
                     onChange={(e) => this.handleChange(e)}
-                    placeholder="What do you want to know"
+                    placeholder="Option one"
                     className='textarea'
                     maxLength={maxLength}
+                    id='optionOne'
                 />
-                {questionLeft <= 50 && <div className='tweet-length'>{questionLeft}</div>}
+                <textarea 
+                    value={optionTwo}
+                    onChange={(e) => this.handleChange(e)}
+                    placeholder="Option one"
+                    className='textarea'
+                    maxLength={maxLength}
+                    id='optionTwo'
+                />
+                {/* {questionLeft <= 50 && <div className='question-length'>{questionLeft}</div>} */}
                 <button className='btn'>SUBMIT</button>
             </form>
         </div>)

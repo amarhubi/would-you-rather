@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import QuestionList from './QuestionList'
+import Question from './Question'
 
 class QuestionListContainer extends Component {
     render(){
@@ -10,11 +10,15 @@ class QuestionListContainer extends Component {
                 List of questions
                 <div>Answered</div>
                     <ul>
-                        <QuestionList questions={answered} />
+                        {answered.map(id => {
+                            return <Question key={id} id={id} answered={true} />
+                        })}
                     </ul>
                 <div>Unanswered</div>
                     <ul>
-                        <QuestionList questions={unanswered} />
+                        {unanswered.map(id => {
+                            return <Question key={id} id={id} answered={false} />
+                        })}
                     </ul>
             </div>
         )

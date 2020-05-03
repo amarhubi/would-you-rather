@@ -3,6 +3,7 @@ import { _saveQuestion } from '../utils/_DATA'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
+export const ANSWSER_QUESTION = 'ANSWER_QUESTION'
 
 export function receiveQuestions(questions){
     return {
@@ -18,14 +19,25 @@ function addQuestion(question){
     }
 }
 
+export function answerQuestion({ authedUser, question, answer }){
+    return {
+        type: ANSWSER_QUESTION,
+        authedUser,
+        question,
+        answer,
+    }
+}
+
+
 export function handleAddQuestion(optionOneText, optionTwoText){
     return (dispatch, getState) => {
         const { authedUser } = getState()
         dispatch(showLoading())
-        _saveQuestion({optionOneText, optionTwoText, author: authedUser})
+        return (_saveQuestion({optionOneText, optionTwoText, author: authedUser})
             .then(question => {
                 dispatch(addQuestion(question))
                 dispatch(hideLoading())
             })
+        )
     }
 }

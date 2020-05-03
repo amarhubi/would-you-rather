@@ -4,6 +4,7 @@ import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
 import QuestionListContainer from './QuestionListContainer'
 import NewQuestion from './NewQuestion'
+import LoginPage from './LoginPage'
 
 
 
@@ -22,6 +23,7 @@ class App extends React.Component {
             ? null
             : <div>
                 <h1>Would you rather</h1>
+                <LoginPage />
                 <QuestionListContainer />
                 <NewQuestion />
               </div>
