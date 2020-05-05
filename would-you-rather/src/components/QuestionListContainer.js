@@ -38,7 +38,6 @@ function mapStateToProps({ questions, authedUser }){
     }
 
     return{
-        authedUser,
         answered,
         unanswered
     }

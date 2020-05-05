@@ -6,38 +6,39 @@ import QuestionListContainer from './QuestionListContainer'
 import NewQuestion from './NewQuestion'
 import LoginPage from './LoginPage'
 import NavBar from './NavBar'
-
+import Leaderboard from './Leaderboard'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
 
 class App extends React.Component {
   
   componentDidMount(){
-    // debugger
     this.props.dispatch(handleInitialData())
   }
 
   render() {
     return (
-      <div className="App">
-        <div className='container'>
-          <LoadingBar />
-          <h1>Would you rather</h1>
+      <Router>
+          <div className='container'>
+            <LoadingBar />
+            <h1>Would you rather</h1>
 
-          {this.props.loggedIn 
-            ? <div>
-                <NavBar />
-                <QuestionListContainer />
-                <NewQuestion />
-              </div>
-            : (this.props.usersLoading 
-                ? null
-                : <div>
-                    <LoginPage />
-                  </div>
-              )
-          }
-        </div>
-      </div>
+            {this.props.loggedIn 
+              ? <div>
+                  <NavBar />
+                  <Route path='/questions' exact component={QuestionListContainer} />
+                  <NewQuestion />
+                  <Leaderboard />
+                </div>
+              : <Route path='/' exact component={LoginPage} />
+              // : (this.props.usersLoading 
+              //     ? null
+              //     : <Route path='/' exact component={LoginPage} />  
+              //   )
+            }
+          </div>
+      </Router>
+      
     )
   }
 }
