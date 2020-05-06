@@ -1,26 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+
 
 class QuestionListContainer extends Component {
     render(){
         const { answered, unanswered } = this.props
         return (
-            <div>
-                List of questions
-                <div>Answered</div>
+            <Tabs defaultActiveKey='answered'>
+                <Tab eventKey='answered' title='Answered'>
                     <ul>
                         {answered.map(id => {
                             return <Question key={id} id={id} answered={true} />
                         })}
                     </ul>
-                <div>Unanswered</div>
+                </Tab>
+                <Tab eventKey='unanswered' title='unanswered'>
                     <ul>
                         {unanswered.map(id => {
                             return <Question key={id} id={id} answered={false} />
                         })}
                     </ul>
-            </div>
+                </Tab>
+            </Tabs>
         )
     }
 }
