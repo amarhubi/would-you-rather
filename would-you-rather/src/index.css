@@ -11,3 +11,58 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.avatar {
+    width: 100px;
+    border-radius: 50px;
+    margin: 10px;
+}
+
+.question-options {
+  margin: auto 0 auto 20px;
+}
+
+.question-body-container {
+  display: flex;
+  padding: 10px
+}
+
+.poll {
+  margin: 15px auto;
+  width: 100%;
+  max-width: 700px;
+  border: 1px solid #dad7d7;
+  border-radius: 5px;
+}
+
+.poll-header {
+  background-color:rgba(175, 175, 175, 0.3);
+  padding: 5px 0 5px 10px;
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+.question-subtitle {
+  padding-left: 10px;
+}
+
+.chosen {
+  background-color: rgba(0, 183, 255, 0.3);
+  border: 1px rgb(0,183,255);
+  border-radius: 6px;
+}
+
+.option {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.poll-container-header{
+  margin: 15px auto
+}
+
+.question-list-container{
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto
+}

@@ -11,18 +11,21 @@ class QuestionListContainer extends Component {
         return (
             <Tabs defaultActiveKey='answered'>
                 <Tab eventKey='answered' title='Answered'>
-                    <ul>
+                    <div className='question-list-container'>
+                        <h5 className='poll-container-header'>Your answered Polls</h5>
+
                         {answered.map(id => {
-                            return <Question key={id} id={id} answered={true} />
+                            return <Question key={id} id={id} />
                         })}
-                    </ul>
+                    </div>
                 </Tab>
-                <Tab eventKey='unanswered' title='unanswered'>
-                    <ul>
+                <Tab eventKey='unanswered' title='Unanswered'>
+                    <h5 className='poll-container-header'>Your unanswered Polls</h5>
+                    <div className='question-list-container'>
                         {unanswered.map(id => {
-                            return <Question key={id} id={id} answered={false} />
+                            return <Question key={id} id={id}/>
                         })}
-                    </ul>
+                    </div>
                 </Tab>
             </Tabs>
         )

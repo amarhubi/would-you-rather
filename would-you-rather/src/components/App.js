@@ -5,8 +5,9 @@ import LoadingBar from 'react-redux-loading'
 import QuestionListContainer from './QuestionListContainer'
 import NewQuestion from './NewQuestion'
 import LoginPage from './LoginPage'
-import NavBar from './NavBar'
+import Navigation from './Navigation'
 import Leaderboard from './Leaderboard'
+import QuestionPage from './QuestionPage'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -22,14 +23,13 @@ class App extends React.Component {
       <Router>
           <div className='container'>
             <LoadingBar />
-            <h1>Would you rather</h1>
-
             {this.props.loggedIn 
               ? <div>
-                  <NavBar />
+                  <Navigation />
                   <Route path='/' exact component={QuestionListContainer} />
                   <Route path='/new-question' exact component={NewQuestion} />
                   <Route path='/leaderboard' exact component={Leaderboard} />
+                  <Route path='/question/:id' component={QuestionPage} />
                 </div>
               : <Route path='/' exact component={LoginPage} />
               // : (this.props.usersLoading 

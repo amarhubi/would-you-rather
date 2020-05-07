@@ -1,10 +1,10 @@
 import { _getQuestions, _getUsers, _saveQuestionAnswer } from '../utils/_DATA'
-import { receiveUsers, updateUserQuestions } from './users'
+import { receiveUsers, updateUserAnswers } from './users'
 import { receiveQuestions, answerQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-// const authedUser = "tylermcginnis"
+const authedUser = "tylermcginnis"
 
 export function handleInitialData(){
     return (dispatch) => {
@@ -13,7 +13,7 @@ export function handleInitialData(){
             .then(([questions, users]) => {
                 dispatch(receiveQuestions(questions))
                 dispatch(receiveUsers(users))
-                // dispatch(setAuthedUser(authedUser))
+                dispatch(setAuthedUser(authedUser))
                 dispatch(hideLoading())
             })
             .catch(
@@ -30,7 +30,8 @@ export function handleAnswerQuestion(answer, qid){
         return (
             _saveQuestionAnswer({authedUser, qid, answer}).then(() => {
                 dispatch(answerQuestion({ authedUser, question: questions[qid], answer }))
-                dispatch(updateUserQuestions({ authedUser, qid, users})) 
+                dispatch(updateUserAnswers({ authedUser, qid, users, answer})) 
+                dispatch(hideLoading())
             }))}
                     
 }

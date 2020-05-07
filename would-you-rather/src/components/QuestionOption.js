@@ -11,27 +11,31 @@ class QuestionOption extends Component {
 
     render(){
         const { option, authedUser, answered } = this.props
+        const userChoice = option.votes.includes(authedUser)
 
         return(
-            <div>
-                { answered 
-                    ? (option.votes.includes(authedUser)  
-                            ? <div>{option.text} <span>Your choice</span></div>
-                            : <div>{option.text}</div>
-                        )
-                    : <div onClick={this.handleClick}>{option.text}</div>
-
-
-                }
-            </div>
-            
+            answered 
+                ?
+                    <div className={'option'  + (userChoice ? ' chosen' : '')}>
+                        ...{option.text}
+                    </div>
+                :   <div onClick={this.handleClick} className='option'>
+                        ...{option.text}
+                    </div>
+            // answered 
+            //         ? (option.votes.includes(authedUser)  
+            //                 ? <div>{option.text} <span>Your choice</span></div>
+            //                 : <div>{option.text}</div>
+            //             )
+            //         : <div onClick={this.handleClick}>{option.text}</div>
         )
     }
 }
 
-function mapStateToProps({ authedUser }, { option }){
+function mapStateToProps({ authedUser, users }, { option, id }){
     return {
         authedUser,
+        answered: Object.keys(users[authedUser].answers).includes(id),
         option
     }
 }
