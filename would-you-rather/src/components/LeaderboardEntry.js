@@ -7,11 +7,29 @@ class LeaderboardEntry extends Component {
         const numberOfQuestions = user.questions.length,
             numberOfAnswers = Object.keys(user.answers).length
         const total = numberOfAnswers + numberOfQuestions
+        
         return(
-            <li key={userId}>
-                {userId} Total: {total} Questions asked: {numberOfQuestions} Questions answered: {numberOfAnswers} 
-                {userId === authedUser && <span>This is you!</span>}
-            </li>
+            <div className='leaderboard-entry-container'>
+                <img src={user.avatarURL} alt={'avatar of ' + user.name} className="avatar"/>
+                <div className='leaderboard-entry-details'>
+                    <h5>{user.name}</h5> 
+                    <table>
+                        <tr>
+                            <td className='attribute'>Total</td>
+                            <td className='value'>{total}</td>
+                        </tr>
+                        <tr>
+                            <td className='attribute'>Questions asked</td>
+                            <td className='value'>{numberOfQuestions}</td>
+                        </tr>
+                        <tr>
+                            <td className='attribute'>Questions answered</td>
+                            <td className='value'>{numberOfAnswers}</td>
+                        </tr>
+                    </table>
+                    {userId === authedUser && <span>This is you!</span>}
+                </div>
+            </div>
         )
     }
 }

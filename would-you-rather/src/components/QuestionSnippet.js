@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 
 
 
-class Question extends Component {
+class QuestionSnippet extends Component {
     handleClick = (answer) => {
         const { answered, id, dispatch } = this.props
         if (answered === false){
@@ -25,7 +25,7 @@ class Question extends Component {
     }
 
     render(){
-        const { question, answered, id, users} = this.props
+        const { question, users} = this.props
         return(
             <div className="poll">
                 <div className="poll-header">
@@ -39,11 +39,11 @@ class Question extends Component {
                     <div className="question-body-container">
                         <img src={users[question.author].avatarURL} className="avatar"/>
                         <div className="question-options">
-                            <QuestionOption option={question.optionOne} optionName='optionOne' id={id} answered={answered}/>
-                            <QuestionOption option={question.optionTwo} optionName='optionTwo' id={id} answered={answered}/> 
+                            ...{question.optionOne.text}...or...
                         </div>
-                        <button onClick={(e) => this.toQuestion(e)}>View Poll</button>
+                        
                     </div>
+                    <button onClick={(e) => this.toQuestion(e)}>View Poll</button>
                 </div>
             </div>            
         )
@@ -58,4 +58,4 @@ function mapStateToProps({ questions, authedUser, users }, { id }){
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Question))
+export default withRouter(connect(mapStateToProps)(QuestionSnippet))

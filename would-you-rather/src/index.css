@@ -14,20 +14,21 @@ code {
 
 .avatar {
     width: 100px;
+    height: 100px;
     border-radius: 50px;
-    margin: 10px;
+    margin: auto 10px;
 }
 
 .question-options {
   margin: auto 0 auto 20px;
 }
 
-.question-body-container {
+.question-body-container, .leaderboard-entry-container {
   display: flex;
   padding: 10px
 }
 
-.poll {
+.poll, .leaderboard-entry-container {
   margin: 15px auto;
   width: 100%;
   max-width: 700px;
@@ -55,14 +56,46 @@ code {
 .option {
   padding: 5px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 }
 
 .poll-container-header{
   margin: 15px auto
 }
 
-.question-list-container{
+.question-list-container, .leaderboard-container{
   max-width: 700px;
   width: 100%;
   margin: 0 auto
+}
+.leaderboard-entry-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboard-entry-container table {
+  border-collapse: collapse;
+  border: 1px solid rgb(218, 218, 218);
+}
+
+.leaderboard-entry-container td.attribute{
+  padding: 5px;
+  border: 1px solid rgb(218, 218, 218);
+  width: 200px;
+}
+
+.leaderboard-entry-container td.value{
+  padding: 5px;
+  border: 1px solid rgb(218, 218, 218);
+  width: 50px;
+}
+
+.textarea {
+  border-radius: 4px;
+  border: 1px solid #dad7d7;
+  padding: 10px;
+  font-size: 15px;
+  height: 100px;
 }

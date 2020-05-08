@@ -6,14 +6,12 @@ class Leaderboard extends Component {
     render(){
         const { userIds, authedUser } = this.props
         return(
-            <div>
-                Leaderboard
-                <ul>
+                <div className='leaderboard-container'>
+                    <h6>Leaderboard</h6>
                     { userIds.map(u => 
                         <LeaderboardEntry key ={u} userId={u} />
                     )}
-                </ul>
-            </div>
+                </div>
         )
     }
 }

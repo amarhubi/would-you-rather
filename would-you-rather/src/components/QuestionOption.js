@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/shared'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 class QuestionOption extends Component {
     handleClick = () => {
@@ -10,33 +11,30 @@ class QuestionOption extends Component {
     }
 
     render(){
-        const { option, authedUser, answered } = this.props
-        const userChoice = option.votes.includes(authedUser)
+        const { option, userChoice, totalVotes } = this.props
+        const now = option.votes.length / totalVotes * 100
 
         return(
-            answered 
-                ?
-                    <div className={'option'  + (userChoice ? ' chosen' : '')}>
-                        ...{option.text}
-                    </div>
-                :   <div onClick={this.handleClick} className='option'>
-                        ...{option.text}
-                    </div>
-            // answered 
-            //         ? (option.votes.includes(authedUser)  
-            //                 ? <div>{option.text} <span>Your choice</span></div>
-            //                 : <div>{option.text}</div>
-            //             )
-            //         : <div onClick={this.handleClick}>{option.text}</div>
+            <div className={'option' + (userChoice ? ' chosen' : '')}>
+                {userChoice 
+                    ? (<div>You answered: </div>)
+                    : null }
+                <div className='option-text'>
+                    ...{option.text} 
+                </div>
+                <ProgressBar now={now} label={`${now}%`}/>
+                <div className='vote-results'>{option.votes.length} of {totalVotes} votes</div>
+            </div>
         )
     }
 }
 
-function mapStateToProps({ authedUser, users }, { option, id }){
+function mapStateToProps({ authedUser }, { option, question }){
     return {
         authedUser,
-        answered: Object.keys(users[authedUser].answers).includes(id),
-        option
+        option,
+        userChoice: option.votes.includes(authedUser), 
+        totalVotes: question.optionOne.votes.length + question.optionTwo.votes.length 
     }
 }
 

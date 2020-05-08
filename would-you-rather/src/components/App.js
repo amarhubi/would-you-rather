@@ -45,7 +45,6 @@ class App extends React.Component {
 }
 
 function mapStateToProps({ authedUser, questions, users }){
-  console.log(users)
   return {
     loggedIn: authedUser !== null,
     usersLoading: Object.keys(users).length === 0,

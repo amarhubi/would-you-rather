@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Question from './Question'
+import QuestionSnippet from './QuestionSnippet'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
@@ -15,15 +15,15 @@ class QuestionListContainer extends Component {
                         <h5 className='poll-container-header'>Your answered Polls</h5>
 
                         {answered.map(id => {
-                            return <Question key={id} id={id} />
+                            return <QuestionSnippet key={id} id={id} />
                         })}
                     </div>
                 </Tab>
                 <Tab eventKey='unanswered' title='Unanswered'>
-                    <h5 className='poll-container-header'>Your unanswered Polls</h5>
                     <div className='question-list-container'>
+                        <h5 className='poll-container-header'>Your unanswered Polls</h5>
                         {unanswered.map(id => {
-                            return <Question key={id} id={id}/>
+                            return <QuestionSnippet key={id} id={id}/>
                         })}
                     </div>
                 </Tab>
