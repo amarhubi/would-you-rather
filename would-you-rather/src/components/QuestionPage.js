@@ -6,6 +6,10 @@ import AnsweredQuestionDetail from './AnsweredQuestionDetail'
 class QuestionPage extends Component {
     render(){
         const { question , answered} = this.props
+        console.log(question)
+        if (question === null) {
+            return <p>This question does not exist</p>
+        }
         return (
             answered 
             ? (<div>
@@ -20,13 +24,10 @@ class QuestionPage extends Component {
 
 function mapStateToProps({ questions, users, authedUser }, props){
     const { id } = props.match.params
+    const question = questions[id]
     return {
         answered: Object.keys(users[authedUser].answers).includes(id),
-        questions,
-        users,
-        authedUser,
-        id,
-        question: questions[id]
+        question: question ? question : null
     }
 }
 export default connect(mapStateToProps)(QuestionPage)

@@ -8,24 +8,30 @@ class LoginPage extends Component {
         dispatch(setAuthedUser(user))
     }
     render(){
-        const { users } = this.props
+        const { users, loading } = this.props
         console.log(users)
 
         return(
-            <div>
-                Login as
-                <ul>
-                    {Object.keys(users).map(u => 
-                        <li onClick={() => this.handleLogin(u)} key={u}>{u}</li>
-                    )}
-                </ul>
-            </div>
+            loading 
+                ? ''
+                : (<div className='login-form'>
+                        <h2>Welcome to the Would You Rather App</h2>
+                        <h5>Please login select a user to login</h5>
+                        <img src="https://tse4.mm.bing.net/th?id=OIP.cvQCcoNtBirVwZWX8g8qcwHaEK&pid=Api" alt='would you rather logo'/>
+                        <div className='user-list'>
+                            {Object.keys(users).map(u => 
+                                <div className='user-list-option' onClick={() => this.handleLogin(u)} key={u}>{u}</div>
+                            )}
+                        </div>
+                    </div>)  
+
         )
     }
 }
 
 function mapStateToProps({ users }){
     return {
+        loading: Object.keys(users).length === 0,
         users,
     }
 }

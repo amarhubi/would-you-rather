@@ -17,6 +17,8 @@ code {
     height: 100px;
     border-radius: 50px;
     margin: auto 10px;
+    border: 1px solid rgba(175, 175, 175, 0.6);
+
 }
 
 .question-options {
@@ -55,7 +57,7 @@ code {
 
 .option {
   padding: 5px;
-  cursor: pointer;
+  cursor: default;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -98,4 +100,44 @@ code {
   padding: 10px;
   font-size: 15px;
   height: 100px;
+}
+
+
+.new-question {
+  width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-avatar {
+  width: 50px;
+  border-radius: 25px;
+  margin: 0 10px;
+  border: 1px solid rgba(175, 175, 175, 0.6)
+}
+
+.user-info {
+  margin-right: 20px
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 100px auto 0 auto;
+  max-width: 590px;
+}
+
+.login-form h2, .login-form h5{
+  text-align: center;
+}
+
+.user-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.user-list-option{
+  cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useReducer } from 'react'
 import { setAuthedUser } from '../actions/authedUser'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
@@ -13,6 +13,7 @@ class Navigation extends Component{
     }
 
     render(){
+        const { authedUser } = this.props
         return (
             <Navbar>
                 <Link to='/'><Navbar.Brand>Would You Rather</Navbar.Brand></Link>
@@ -22,29 +23,19 @@ class Navigation extends Component{
                     <Link className="nav-link" to='/leaderboard'>Leaderboard </Link>
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
-                    <Navbar.Text>
-                        Signed in as: <a>{this.props.authedUser}</a>
+                    <Navbar.Text className='user-info'>
+                        Signed in as: <a>{authedUser.id}</a><img className='navbar-avatar' src={authedUser.avatarURL} alt={`avatar for ${authedUser.name}`}/>
                     </Navbar.Text>
                     <Button variant='secondary' onClick={this.handleLogout}>Logout</Button>
                 </Navbar.Collapse>
             </Navbar>
-            // <Navbar>
-            //     <Navbar.Brand><Link to='/'>Would You Rather</Link></Navbar.Brand>   
-            //     <div>
-            //     <span>Logged in as {this.props.authedUser} </span>
-            //     <Link to='/new-question'>New Question </Link>
-            //     <Link to='/leaderboard'>Leaderboard </Link>
-            //     <button onClick={this.handleLogout}>Logout</button>
-            // </div>
-            // </Navbar>
-            
         )
     }
 }
 
-function mapStateToProps({ authedUser }){
+function mapStateToProps({ authedUser, users }){
     return {
-        authedUser
+        authedUser: users[authedUser],
     }
 } 
 export default connect(mapStateToProps)(Navigation)

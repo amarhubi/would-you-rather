@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { handleAddQuestion } from '../actions/questions'
+import { handleAddQuestion } from '../actions/shared'
 import { connect } from 'react-redux'
 
 class NewQuestion extends Component {
@@ -24,10 +24,10 @@ class NewQuestion extends Component {
     render(){
         const { optionOne, optionTwo } = this.state,
             maxLength = 100
-        // let questionLeft = maxLength - text.length
-        return (<div>
+        return (<div className='new-question'>
             <h3>New Question</h3>
             <form className='new-question' onSubmit={(e) => this.handleSubmit(e)}>
+                <label>Option one</label>
                 <textarea 
                     value={optionOne}
                     onChange={(e) => this.handleChange(e)}
@@ -36,6 +36,7 @@ class NewQuestion extends Component {
                     maxLength={maxLength}
                     id='optionOne'
                 />
+                <label>Option two</label>
                 <textarea 
                     value={optionTwo}
                     onChange={(e) => this.handleChange(e)}
@@ -44,7 +45,6 @@ class NewQuestion extends Component {
                     maxLength={maxLength}
                     id='optionTwo'
                 />
-                {/* {questionLeft <= 50 && <div className='question-length'>{questionLeft}</div>} */}
                 <button className='btn'>SUBMIT</button>
             </form>
         </div>)
