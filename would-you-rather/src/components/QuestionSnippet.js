@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { handleAnswerQuestion } from '../actions/shared'
 import { connect } from 'react-redux'
-import QuestionOption from './QuestionOption'
-import Card, { CardHeader } from 'react-bootstrap/Card'
 import { withRouter } from 'react-router-dom'
 
 
@@ -26,10 +24,11 @@ class QuestionSnippet extends Component {
 
     render(){
         const { question, users} = this.props
+        const author = users[question.author]
         return(
             <div className="poll">
                 <div className="poll-header">
-                    {users[question.author].name} asks
+                    {author.name} asks
                 </div>
                 
                 <div>
@@ -37,7 +36,7 @@ class QuestionSnippet extends Component {
                         Would you rather...
                     </h6>
                     <div className="question-body-container">
-                        <img src={users[question.author].avatarURL} className="avatar"/>
+                        <img src={author.avatarURL} alt={`avatar for ${author.name}`} className="avatar"/>
                         <div className="question-options">
                             ...{question.optionOne.text}...or...
                         </div>

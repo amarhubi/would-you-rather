@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
+import { withRouter } from 'react-router-dom'
 
 class LoginPage extends Component {
     handleLogin = (user) => {
         const { dispatch } = this.props
         dispatch(setAuthedUser(user))
+        this.props.hisotry.push('/')
     }
     render(){
         const { users, loading } = this.props
@@ -35,4 +37,4 @@ function mapStateToProps({ users }){
         users,
     }
 }
-export default connect(mapStateToProps)(LoginPage)
+export default withRouter(connect(mapStateToProps)(LoginPage))
