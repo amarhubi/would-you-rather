@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAnswerQuestion } from '../actions/shared'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 
 class QuestionOption extends Component {
-    handleClick = () => {
-        const { id, optionName, dispatch } = this.props
-        console.log(optionName)
-        dispatch(handleAnswerQuestion(optionName, id))
-    }
+    // handleClick = () => {
+    //     const { id, optionName, dispatch } = this.props
+    //     console.log(optionName)
+    //     dispatch(handleAnswerQuestion(optionName, id))
+    // }
 
     render(){
         const { option, userChoice, totalVotes } = this.props
@@ -22,7 +21,7 @@ class QuestionOption extends Component {
                 <div className='option-text'>
                     ...{option.text} 
                 </div>
-                <ProgressBar now={now} label={`${now}%`}/>
+                <ProgressBar now={now} label={`${now.toFixed(1)}%`}/>
                 <div className='vote-results'>{option.votes.length} of {totalVotes} votes</div>
             </div>
         )

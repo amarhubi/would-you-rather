@@ -9,21 +9,21 @@ class QuestionListContainer extends Component {
     render(){
         const { answered, unanswered } = this.props
         return (
-            <Tabs defaultActiveKey='answered'>
+            <Tabs defaultActiveKey='unanswered'>
+                <Tab eventKey='unanswered' title='Unanswered'>
+                    <div className='question-list-container'>
+                        <h5 className='poll-container-header'>Your unanswered Polls</h5>
+                        {unanswered.map(id => {
+                            return <QuestionSnippet key={id} id={id}/>
+                        })}
+                    </div>
+                </Tab>
                 <Tab eventKey='answered' title='Answered'>
                     <div className='question-list-container'>
                         <h5 className='poll-container-header'>Your answered Polls</h5>
 
                         {answered.map(id => {
                             return <QuestionSnippet key={id} id={id} />
-                        })}
-                    </div>
-                </Tab>
-                <Tab eventKey='unanswered' title='Unanswered'>
-                    <div className='question-list-container'>
-                        <h5 className='poll-container-header'>Your unanswered Polls</h5>
-                        {unanswered.map(id => {
-                            return <QuestionSnippet key={id} id={id}/>
                         })}
                     </div>
                 </Tab>
@@ -45,8 +45,8 @@ function mapStateToProps({ questions, authedUser }){
     }
 
     return{
-        answered,
-        unanswered
+        answered: answered.sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+        unanswered: unanswered.sort((a,b) => questions[b].timestamp - questions[a].timestamp),
     }
 }
 export default connect(mapStateToProps)(QuestionListContainer)

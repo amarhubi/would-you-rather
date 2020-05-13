@@ -5,12 +5,9 @@ import QuestionOption from './QuestionOption'
 
 class AnsweredQuestionDetail extends Component {
     render(){
-        const { question, users, authedUser } = this.props
+        const { question, users } = this.props
         const { optionOne, optionTwo } = question
 
-        const userChoice = optionOne.votes.includes(authedUser) 
-            ? 'optionOne'
-            : 'optionTwo' 
         return (
             <div className="poll">
                 <div className="poll-header">
@@ -24,12 +21,6 @@ class AnsweredQuestionDetail extends Component {
                     <div className="question-body-container">
                         <img src={users[question.author].avatarURL} alt={'avatar of ' + users[question.author].name} className="avatar"/>
                         <div className="question-options">
-                            {/* <div className={'option'  + (userChoice === 'optionOne' ? ' chosen' : '')}>
-                                ...{optionOne.text}
-                            </div>
-                            <div onClick={this.handleClick} className={'option'  + (userChoice === 'optionTwo' ? ' chosen' : '')}>
-                                ...{optionTwo.text}
-                            </div> */}
                             <QuestionOption option={optionOne} question={question}/>
                             <QuestionOption option={optionTwo} question={question}/> 
                         </div>

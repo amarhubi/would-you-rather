@@ -7,11 +7,9 @@ class LoginPage extends Component {
     handleLogin = (user) => {
         const { dispatch } = this.props
         dispatch(setAuthedUser(user))
-        this.props.hisotry.push('/')
     }
     render(){
         const { users, loading } = this.props
-        console.log(users)
 
         return(
             loading 

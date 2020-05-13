@@ -4,7 +4,7 @@ import LeaderboardEntry from './LeaderboardEntry'
 
 class Leaderboard extends Component {
     render(){
-        const { userIds, authedUser } = this.props
+        const { userIds } = this.props
         return(
                 <div className='leaderboard-container'>
                     <h6>Leaderboard</h6>

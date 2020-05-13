@@ -8,7 +8,7 @@ import LoginPage from './LoginPage'
 import Navigation from './Navigation'
 import Leaderboard from './Leaderboard'
 import QuestionPage from './QuestionPage'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -27,15 +27,11 @@ class App extends React.Component {
               ? <div>
                   <Navigation />
                   <Route path='/' exact component={QuestionListContainer} />
-                  <Route path='/new-question' exact component={NewQuestion} />
+                  <Route path='/add' exact component={NewQuestion} />
                   <Route path='/leaderboard' exact component={Leaderboard} />
                   <Route path='/question/:id' component={QuestionPage} />
                 </div>
-              : <Route path='/' exact component={LoginPage} />
-              // : (this.props.usersLoading 
-              //     ? null
-              //     : <Route path='/' exact component={LoginPage} />  
-              //   )
+              : <Route path='/' component={LoginPage} />
             }
           </div>
       </Router>

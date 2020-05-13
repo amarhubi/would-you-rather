@@ -25,10 +25,11 @@ class QuestionSnippet extends Component {
     render(){
         const { question, users} = this.props
         const author = users[question.author]
+        const date = new Date(question.timestamp)
         return(
             <div className="poll">
                 <div className="poll-header">
-                    {author.name} asks
+                    {author.name} asks <span className='date-time'>{date.toDateString()}</span>
                 </div>
                 
                 <div>
