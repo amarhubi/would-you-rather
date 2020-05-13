@@ -54,9 +54,6 @@ class UnansweredQuestionDetail extends Component {
                                 </label>                            
                                 <button >Submit</button>
                             </form>
-
-                            {/* <QuestionOption option={question.optionOne} optionName='optionOne' id={id}/>
-                            <QuestionOption option={question.optionTwo} optionName='optionTwo' id={id}/>  */}
                         </div>
                     </div>
                 </div>

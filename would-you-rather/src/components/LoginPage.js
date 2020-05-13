@@ -4,9 +4,19 @@ import { setAuthedUser } from '../actions/authedUser'
 import { withRouter } from 'react-router-dom'
 
 class LoginPage extends Component {
-    handleLogin = (user) => {
+    state = {
+        selectedUser: ''
+    }
+
+    handleLogin = (e) => {
+        e.preventDefault()
         const { dispatch } = this.props
-        dispatch(setAuthedUser(user))
+        dispatch(setAuthedUser(this.state.selectedUser))
+    }
+
+    handleOptionChange = (e) => {
+        console.log(e.target.value)
+        this.setState({selectedUser: e.target.value})
     }
     render(){
         const { users, loading } = this.props
@@ -17,12 +27,16 @@ class LoginPage extends Component {
                 : (<div className='login-form'>
                         <h2>Welcome to the Would You Rather App</h2>
                         <h5>Please login select a user to login</h5>
-                        <img src="https://tse4.mm.bing.net/th?id=OIP.cvQCcoNtBirVwZWX8g8qcwHaEK&pid=Api" alt='would you rather logo'/>
-                        <div className='user-list'>
+                        <form onSubmit={(e) => this.handleLogin(e)}className='user-list'>
                             {Object.keys(users).map(u => 
-                                <div className='user-list-option' onClick={() => this.handleLogin(u)} key={u}>{u}</div>
+                                <label key={u}>
+                                    <input type='radio' value={u} checked={this.state.selectedUser===u} onChange={(e) => this.handleOptionChange(e)} />
+                                    {u}
+                                </label>                    
+                                                                
                             )}
-                        </div>
+                            <button >Submit</button>
+                        </form>
                     </div>)  
 
         )
