@@ -6,7 +6,6 @@ import AnsweredQuestionDetail from './AnsweredQuestionDetail'
 class QuestionPage extends Component {
     render(){
         const { question , answered} = this.props
-        console.log(question)
         if (question === null) {
             return <p>This question does not exist</p>
         }

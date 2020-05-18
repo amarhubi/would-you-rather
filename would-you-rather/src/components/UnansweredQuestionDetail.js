@@ -14,7 +14,6 @@ class UnansweredQuestionDetail extends Component {
         e.preventDefault()
         const { question, dispatch } = this.props
         const { selectedOption } = this.state
-        console.log(`Selected: ${selectedOption}`)
         dispatch(handleAnswerQuestion(selectedOption, question.id))
     }
 

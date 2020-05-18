@@ -1,52 +1,58 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 class LoginPage extends Component {
     state = {
-        selectedUser: ''
+        selectedUser: '',
+        redirectToReferrer: false
     }
 
     handleLogin = (e) => {
         e.preventDefault()
         const { dispatch } = this.props
-        dispatch(setAuthedUser(this.state.selectedUser))
+        const { selectedUser } = this.state
+        if(selectedUser !== ''){
+            dispatch(setAuthedUser(selectedUser))
+            this.setState({redirectToReferrer: true})
+        }
     }
 
     handleOptionChange = (e) => {
-        console.log(e.target.value)
         this.setState({selectedUser: e.target.value})
     }
-    render(){
-        const { users, loading } = this.props
-
+    render(){        
+        const { users } = this.props
+        const { selectedUser, redirectToReferrer } = this.state
+        const { from } = this.props.location.state || { from: { pathname: '/' }}
+       
+        if(redirectToReferrer === true){
+            return <Redirect to={from} />
+        }
         return(
-            loading 
-                ? ''
-                : (<div className='login-form'>
-                        <h2>Welcome to the Would You Rather App</h2>
-                        <h5>Please login select a user to login</h5>
-                        <form onSubmit={(e) => this.handleLogin(e)}className='user-list'>
-                            {Object.keys(users).map(u => 
-                                <label key={u}>
-                                    <input type='radio' value={u} checked={this.state.selectedUser===u} onChange={(e) => this.handleOptionChange(e)} />
-                                    {u}
-                                </label>                    
-                                                                
-                            )}
-                            <button >Submit</button>
-                        </form>
-                    </div>)  
-
+            <div className='login-form'>
+                <h2>Welcome to the Would You Rather App</h2>
+                <h5>Please select a user to login</h5>
+                <form onSubmit={(e) => this.handleLogin(e)}className='user-list'>
+                    {Object.keys(users).map(u => 
+                        <label key={u}>
+                            <input type='radio' value={u} checked={selectedUser===u} onChange={(e) => this.handleOptionChange(e)} />
+                            {u}
+                        </label>                    
+                                                        
+                    )}
+                    <button >Login</button>
+                </form>
+            </div>
         )
+
     }
 }
 
-function mapStateToProps({ users }){
+function mapStateToProps({ users  }){
     return {
-        loading: Object.keys(users).length === 0,
-        users,
+        users  
     }
 }
 export default withRouter(connect(mapStateToProps)(LoginPage))

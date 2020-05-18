@@ -3,12 +3,6 @@ import { connect } from 'react-redux'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 
 class QuestionOption extends Component {
-    // handleClick = () => {
-    //     const { id, optionName, dispatch } = this.props
-    //     console.log(optionName)
-    //     dispatch(handleAnswerQuestion(optionName, id))
-    // }
-
     render(){
         const { option, userChoice, totalVotes } = this.props
         const now = option.votes.length / totalVotes * 100
@@ -30,7 +24,6 @@ class QuestionOption extends Component {
 
 function mapStateToProps({ authedUser }, { option, question }){
     return {
-        authedUser,
         option,
         userChoice: option.votes.includes(authedUser), 
         totalVotes: question.optionOne.votes.length + question.optionTwo.votes.length 

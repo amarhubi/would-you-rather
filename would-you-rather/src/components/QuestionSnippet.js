@@ -53,7 +53,6 @@ class QuestionSnippet extends Component {
 function mapStateToProps({ questions, authedUser, users }, { id }){
     return{
         question: questions[id],
-        authedUser,
         users
     }
 }

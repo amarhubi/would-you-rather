@@ -14,18 +14,20 @@ class LeaderboardEntry extends Component {
                 <div className='leaderboard-entry-details'>
                     <h5>{user.name}</h5> 
                     <table>
-                        <tr>
-                            <td className='attribute'>Total</td>
-                            <td className='value'>{total}</td>
-                        </tr>
-                        <tr>
-                            <td className='attribute'>Questions asked</td>
-                            <td className='value'>{numberOfQuestions}</td>
-                        </tr>
-                        <tr>
-                            <td className='attribute'>Questions answered</td>
-                            <td className='value'>{numberOfAnswers}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td className='attribute'>Total</td>
+                                <td className='value'>{total}</td>
+                            </tr>
+                            <tr>
+                                <td className='attribute'>Questions asked</td>
+                                <td className='value'>{numberOfQuestions}</td>
+                            </tr>
+                            <tr>
+                                <td className='attribute'>Questions answered</td>
+                                <td className='value'>{numberOfAnswers}</td>
+                            </tr>
+                        </tbody>
                     </table>
                     {userId === authedUser && <span>This is you!</span>}
                 </div>

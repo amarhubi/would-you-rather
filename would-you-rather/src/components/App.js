@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import LoadingBar from 'react-redux-loading'
 import QuestionListContainer from './QuestionListContainer'
 import NewQuestion from './NewQuestion'
 import LoginPage from './LoginPage'
 import Navigation from './Navigation'
 import Leaderboard from './Leaderboard'
 import QuestionPage from './QuestionPage'
+import PrivateRoute from './PrivateRoute'
 import { BrowserRouter as Router, Route, } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,20 +19,16 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.props.isAuthenticated)
     return (
       <Router>
           <div className='container'>
-            <LoadingBar />
-            {this.props.loggedIn 
-              ? <div>
-                  <Navigation />
-                  <Route path='/' exact component={QuestionListContainer} />
-                  <Route path='/add' exact component={NewQuestion} />
-                  <Route path='/leaderboard' exact component={Leaderboard} />
-                  <Route path='/question/:id' component={QuestionPage} />
-                </div>
-              : <Route path='/' component={LoginPage} />
-            }
+            <Route path='/login' exact component={LoginPage}/>
+            {this.props.isAuthenticated && <Navigation />}
+            <PrivateRoute path='/' exact component={QuestionListContainer} isAuthenticated={this.props.isAuthenticated} />
+            <PrivateRoute path='/add' exact component={NewQuestion} isAuthenticated={this.props.isAuthenticated} />
+            <PrivateRoute path='/leaderboard' exact component={Leaderboard} isAuthenticated={this.props.isAuthenticated} />
+            <PrivateRoute path='/question/:id' exact component={QuestionPage} isAuthenticated={this.props.isAuthenticated} />
           </div>
       </Router>
       
@@ -40,11 +36,9 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions, users }){
+function mapStateToProps({ authedUser }){
   return {
-    loggedIn: authedUser !== null,
-    usersLoading: Object.keys(users).length === 0,
-    questions,
+    isAuthenticated: authedUser !== null,
   }
 }
 
