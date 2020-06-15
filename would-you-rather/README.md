@@ -8,7 +8,7 @@ When the application starts, select a user from the list and pressing submit. Yo
 
 Run:
 
-### `yart install`
+### `yarn install`
 
 then
 
